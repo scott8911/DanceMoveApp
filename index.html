@@ -49,6 +49,11 @@
         <strong>Biz Markie</strong>
         <div class="tag">Party Move • Intermediate • 90s</div>
     </div>
+    <div class="card" onclick="openMove('Down Bounce')" style="background-image:url('images/dancer5.jpg')">
+    <strong>Down Bounce</strong>
+    <div class="tag">Bounce • Beginner • Groove</div>
+</div>
+
 </div>
 
 <!-- MOVE DETAIL SCREEN -->
@@ -57,11 +62,16 @@
     <h1 id="moveTitle"></h1>
     <p class="tag">Old School • Beginner • Party Move</p>
 
-    <div class="button" id="playVideo" onclick="playVideo(this)">▶ Play Demo Video</div>
-    <video id="demoVideo" width="100%" controls style="margin-top:10px; display:none;">
-        <source src="" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+<div id="videoContainer" style="margin-top:15px; display:none;">
+    <div class="video-wrapper">
+        <iframe id="biliPlayer"
+            frameborder="0"
+            allowfullscreen
+            scrolling="no">
+        </iframe>
+    </div>
+</div>
+
 
     <p><strong>Description:</strong><br>
     Classic side-to-side groove with arm swing.</p>
