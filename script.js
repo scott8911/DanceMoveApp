@@ -13,7 +13,7 @@ function openMove(moveName) {
 
     if (moveName === 'Down Bounce') {
         video.querySelector('source').src =
-            "https://res.cloudinary.com/dpde5dep1/video/upload/move1_gethq6.mp4";
+            "https://res.cloudinary.com/dpde5dep1/video/upload/v1771568605/move1_nxbkhw.mp4";
     }
 
     video.load();              // reload with new source
@@ -32,4 +32,5 @@ function toggleLoop() {
     const video = document.getElementById('cloudinaryPlayer');
     video.loop = !video.loop;
 }
+
 
