@@ -78,4 +78,44 @@ moves.forEach((moveObj) => {
 });
 
 
+const moveList = document.getElementById("moveList");
+const moveTitle = document.getElementById("moveTitle");
+const moveTag = document.getElementById("moveTag");
+const moveDescription = document.getElementById("moveDescription");
+const moveKeyFocus = document.getElementById("moveKeyFocus");
+const video = document.getElementById("cloudinaryPlayer");
+
+moves.forEach((moveObj) => {
+  const item = document.createElement("div");
+  item.className = "move-item";
+
+  // layout: name + small video preview
+  item.innerHTML = `
+    <div class="move-name">${moveObj.name}</div>
+    <div class="move-preview">
+        <video src="${moveObj.video}" muted loop playsinline></video>
+    </div>
+  `;
+
+  // hover to autoplay preview
+  const previewVideo = item.querySelector("video");
+  item.addEventListener("mouseenter", () => previewVideo.play());
+  item.addEventListener("mouseleave", () => previewVideo.pause());
+
+  // click to open detail screen
+  item.addEventListener("click", () => {
+    moveTitle.textContent = moveObj.name;
+    moveTag.innerHTML = moveObj.tag;
+    moveDescription.innerHTML = moveObj.description;
+    moveKeyFocus.innerHTML = moveObj.keyFocus;
+
+    video.querySelector('source').src = moveObj.video;
+    video.load();
+    video.play();
+
+    goTo('moveDetail');
+  });
+
+  moveList.appendChild(item);
+});
 
