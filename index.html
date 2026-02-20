@@ -30,93 +30,46 @@
         <button>Era ▼</button>
     </div>
 
-    <div class="card" onclick="openMove('The Wop')" style="background-image:url('images/dancer1.jpg')">
-        <strong>The Wop</strong>
-        <div class="tag">Old School • Beginner • Party Move</div>
+    <div class="card" onclick="openMove('Down Bounce')">
+        <strong>Down Bounce</strong>
+        <div class="tag">Bounce • Beginner • Groove</div>
     </div>
-
-    <div class="card" onclick="openMove('Cabbage Patch')" style="background-image:url('images/dancer2.jpg')">
-        <strong>Cabbage Patch</strong>
-        <div class="tag">Old School • Beginner • Groove</div>
-    </div>
-
-    <div class="card" onclick="openMove('Smurf')" style="background-image:url('images/dancer3.jpg')">
-        <strong>Smurf</strong>
-        <div class="tag">Old School • Beginner • Bounce</div>
-    </div>
-
-    <div class="card" onclick="openMove('Biz Markie')" style="background-image:url('images/dancer4.jpg')">
-        <strong>Biz Markie</strong>
-        <div class="tag">Party Move • Intermediate • 90s</div>
-    </div>
-    <div class="card" onclick="openMove('Down Bounce')" style="background-image:url('images/dancer5.jpg')">
-    <strong>Down Bounce</strong>
-    <div class="tag">Bounce • Beginner • Groove</div>
-</div>
-
 </div>
 
 <!-- MOVE DETAIL SCREEN -->
 <div id="moveDetail" class="screen move-detail-screen">
     <div class="back" onclick="goTo('browse')">← Back</div>
     <h1 id="moveTitle"></h1>
-    <p class="tag">Old School • Beginner • Party Move</p>
+    <p class="tag">Bounce • Beginner • Groove</p>
 
-<div id="videoContainer" style="margin-top:15px; display:none;">
-    <div class="video-wrapper">
-        <iframe id="biliPlayer"
-            frameborder="0"
-            allowfullscreen
-            scrolling="no">
-        </iframe>
+    <!-- Cloudinary Video -->
+    <div id="videoContainer" class="video-container">
+        <div class="video-wrapper">
+            <iframe 
+                id="cloudinaryPlayer"
+                src=""
+                frameborder="0"
+                allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
     </div>
-</div>
-
 
     <p><strong>Description:</strong><br>
-    Classic side-to-side groove with arm swing.</p>
+    Classic bounce groove focusing on grounded rhythm and body control.</p>
 
     <p><strong>Key Focus:</strong><br>
-    - Shoulder groove<br>
+    - Downward energy<br>
+    - Core control<br>
     - Timing on 1 & 2</p>
 
-    <p><strong>Drill Mode:</strong></p>
-    <div class="secondary-button">Slow 0.75x</div>
-    <div class="secondary-button">Normal</div>
-    <div class="secondary-button">Loop Section</div>
-
     <div class="button">Save Move ♥</div>
-</div>
-
-<!-- ASSORTMENTS SCREEN -->
-<div id="assortments" class="screen">
-    <h1>ASSORTMENTS</h1>
-
-    <div class="card">Beginner Starter Pack (12 Moves)</div>
-    <div class="card">90s Party Classics (18 Moves)</div>
-    <div class="card">Bounce-Based Moves</div>
-    <div class="card">Arm-Focused Moves</div>
-    <div class="card">Club Freestyle Toolkit</div>
-</div>
-
-<!-- SAVED SCREEN -->
-<div id="saved" class="screen">
-    <h1>Saved Moves</h1>
-    <p>No saved moves yet.</p>
-</div>
-
-<!-- PROFILE SCREEN -->
-<div id="profile" class="screen">
-    <h1>Profile</h1>
-    <p>Training progress coming soon.</p>
 </div>
 
 <!-- BOTTOM NAV -->
 <div class="bottom-nav">
     <div class="nav-item" onclick="goTo('welcome')">Home</div>
     <div class="nav-item" onclick="goTo('browse')">Moves</div>
-    <div class="nav-item" onclick="goTo('assortments')">Practice</div>
-    <div class="nav-item" onclick="goTo('profile')">Profile</div>
 </div>
 
 <script src="script.js"></script>
