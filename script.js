@@ -33,14 +33,12 @@ function toggleLoop() {
   video.loop = !video.loop;
 }
 
-/* ===== SAVE MOVE (placeholder) ===== */
 function saveMove() {
   alert("Move saved!");
 }
 
 /* ===== INIT ===== */
 document.addEventListener("DOMContentLoaded", () => {
-
   const moveList = document.getElementById("moveList");
   const moveTitle = document.getElementById("moveTitle");
   const moveTag = document.getElementById("moveTag");
@@ -49,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const mainVideo = document.getElementById("cloudinaryPlayer");
 
   moves.forEach((moveObj) => {
-
     const item = document.createElement("div");
     item.className = "card move-item";
 
@@ -84,9 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
       mainVideo.pause();
       mainVideo.src = moveObj.video;
       mainVideo.load();
-      mainVideo.play().catch(err => {
-        console.warn("Autoplay blocked or video error", err);
-      });
+      mainVideo.play().catch(()=>{});
 
       goTo("moveDetail");
     });
@@ -94,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
     moveList.appendChild(item);
   });
 
-  // Optional: filter by search input
+  // Search filter
   const searchInput = document.getElementById("searchInput");
   searchInput.addEventListener("input", (e) => {
     const query = e.target.value.toLowerCase();
@@ -103,5 +98,4 @@ document.addEventListener("DOMContentLoaded", () => {
       card.style.display = name.includes(query) ? "block" : "none";
     });
   });
-
 });
