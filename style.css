@@ -97,9 +97,27 @@ input {
     height: 100%;
     object-fit: contain;
 }
-.speed-controls {
+/* Make speed/loop buttons smaller and below the video */
+.video-container .speed-controls {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
-    margin-top: 10px;
+    margin: 10px 0 5px 0; /* spacing under video */
+    justify-content: center;
+}
+
+.video-container .speed-controls .secondary-button,
+.video-container .video-container .secondary-button {
+    padding: 6px 10px;       /* smaller size */
+    font-size: 12px;         /* smaller text */
+    border-radius: 6px;
+    border: 1px solid #555;
+    background: #222;
+    color: #00bfff;
+    cursor: pointer;
+    flex: unset;             /* remove flex stretch */
+}
+
+.video-container .secondary-button.toggle-loop {
+    margin-top: 5px;         /* separate from speed buttons */
 }
