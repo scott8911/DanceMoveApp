@@ -80,20 +80,18 @@ input {
 
 /* Vertical video layout */
 .video-container {
-    margin-top: 5px;         /* smaller top space */
-    margin-bottom: 5px;      /* smaller bottom space */
+    margin-top: 0;         /* smaller top space */
+    padding: 0;
     max-width: 800px;        /* optional */
     text-align: center;      /* center buttons */
 }
 
 .video-wrapper {
-    position: relative;
+    display: inline-block; /* shrink-wrap the video */
     width: 100%;
     border-radius: 16px;
     overflow: hidden;
-    background: black;
-    margin: 0 auto;          /* center horizontally */
-
+    background: black; 
 }
 
 .video-wrapper video {
@@ -107,7 +105,7 @@ input {
     display: flex;
     gap: 5px 0;
     flex-wrap: wrap;
-    margin: 10px 0 5px 0; /* spacing under video */
+    margin: 2px 0; /* spacing under video */
     justify-content: center;
 }
 
@@ -124,7 +122,8 @@ input {
 }
 
 .video-container .secondary-button.toggle-loop {
-    margin-top: 3px;         /* separate from speed buttons */
+    margin-top: 2px;         /* separate from speed buttons */
 }
+
 
 
