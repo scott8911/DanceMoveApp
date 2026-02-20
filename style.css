@@ -157,3 +157,43 @@ input {
     pointer-events: none; /* prevent clicking on video instead of card */
 }
 
+/* Move list preview layout */
+.card.move-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;       /* slightly smaller padding */
+    border-bottom: 1px solid #333;
+    cursor: pointer;
+}
+
+.card.move-item .move-name {
+    flex: 1;
+    font-weight: bold;
+    color: #fff;
+    font-size: 14px;         /* slightly smaller text for mobile */
+}
+
+.card.move-item .move-preview {
+    width: 100px;             /* smaller width for mobile-friendly list */
+    height: 60px;             /* proportional height */
+    border-radius: 6px;
+    overflow: hidden;
+    margin-left: 10px;
+    flex-shrink: 0;           /* don’t shrink video */
+}
+
+.card.move-item .move-preview video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;     /* prevent clicking on video itself */
+    display: block;
+}
+
+.browse-screen {
+    overflow-y: auto;
+    max-height: calc(100vh - 60px); /* keep nav visible */
+    padding: 10px;
+}
+
