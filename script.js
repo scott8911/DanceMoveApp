@@ -31,65 +31,14 @@ function toggleLoop() {
 
 const moveList = document.getElementById("moveList");
 const moveTitle = document.getElementById("moveTitle");
-const video = document.getElementById("cloudinaryPlayer");
-
-moves.forEach((moveObj) => {
-  const item = document.createElement("div");
-  item.className = "card move-item";
-
-  // layout: name + small video preview
-  item.innerHTML = `
-    <div class="move-name">${moveObj.name}</div>
-    <div class="move-preview">
-        <video src="${moveObj.video}" muted loop playsinline></video>
-    </div>
-  `;
-
-  // autoplay preview on hover
-  const previewVideo = item.querySelector("video");
-  item.addEventListener("mouseenter", () => previewVideo.play());
-  item.addEventListener("mouseleave", () => previewVideo.pause());
-
-  // click to open move detail
-  item.onclick = () => {
-    moveTitle.textContent = moveObj.name;
-    moveTag.innerHTML = moveObj.tag;
-    moveDescription.innerHTML = moveObj.description;
-    moveKeyFocus.innerHTML = moveObj.keyFocus;
-
-    video.querySelector('source').src = moveObj.video;
-    video.load();
-    video.play();
-    goTo('moveDetail');
-  };
-
-  moveList.appendChild(item);
-}); 
-
-  item.onclick = () => {
-    moveTitle.textContent = moveObj.name;
-    video.querySelector('source').src = moveObj.video; // load correct video
-    video.load();      // reload the new video
-    video.play();      // optional: auto-play
-    goTo('moveDetail'); // switch to the video screen
-  };
-
-  moveList.appendChild(item);
-});
-
-
-/* ===== DYNAMIC MOVE LIST WITH RELIABLE PREVIEW ===== */
-const moveList = document.getElementById("moveList");
-const moveTitle = document.getElementById("moveTitle");
 const moveTag = document.getElementById("moveTag");
 const moveDescription = document.getElementById("moveDescription");
 const moveKeyFocus = document.getElementById("moveKeyFocus");
-const mainVideo = document.getElementById("cloudinaryPlayer");
+const video = document.getElementById("cloudinaryPlayer");
 
 moves.forEach((moveObj, index) => {
-
   const item = document.createElement("div");
-  item.className = "move-item";
+  item.className = "card move-item";
 
   item.innerHTML = `
     <div class="move-name">${moveObj.name}</div>
@@ -99,6 +48,8 @@ moves.forEach((moveObj, index) => {
         loop 
         playsinline 
         preload="metadata"
+        width="120"
+        height="80"
       >
         <source src="${moveObj.video}?v=${index}" type="video/mp4">
       </video>
@@ -107,28 +58,27 @@ moves.forEach((moveObj, index) => {
 
   const previewVideo = item.querySelector("video");
 
-  // Force correct preview behavior
-  previewVideo.addEventListener("loadeddata", () => {
+  // hover preview (stable)
+  item.addEventListener("mouseenter", () => {
     previewVideo.currentTime = 0;
+    previewVideo.play();
   });
 
-  // Autoplay (required for consistent preview)
-  previewVideo.play().catch(() => {
-    // if autoplay blocked, allow hover fallback
-    item.addEventListener("mouseenter", () => previewVideo.play());
-    item.addEventListener("mouseleave", () => previewVideo.pause());
+  item.addEventListener("mouseleave", () => {
+    previewVideo.pause();
   });
 
-  // Click to open detail
+  // click to open detail
   item.addEventListener("click", () => {
     moveTitle.textContent = moveObj.name;
-    moveTag.innerHTML = moveObj.tag;
-    moveDescription.innerHTML = moveObj.description;
-    moveKeyFocus.innerHTML = moveObj.keyFocus;
 
-    mainVideo.querySelector("source").src = moveObj.video;
-    mainVideo.load();
-    mainVideo.play();
+    if (moveTag) moveTag.innerHTML = moveObj.tag || "";
+    if (moveDescription) moveDescription.innerHTML = moveObj.description || "";
+    if (moveKeyFocus) moveKeyFocus.innerHTML = moveObj.keyFocus || "";
+
+    video.querySelector("source").src = moveObj.video;
+    video.load();
+    video.play();
 
     goTo("moveDetail");
   });
