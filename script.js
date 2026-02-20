@@ -87,10 +87,15 @@ document.addEventListener("DOMContentLoaded", () => {
       moveDescription.innerHTML = moveObj.description;
       moveKeyFocus.innerHTML = moveObj.keyFocus;
 
-      mainVideo.src = moveObj.video;
-      mainVideo.load();
-      mainVideo.play();
+ mainVideo.pause();
+mainVideo.src = moveObj.video;
+mainVideo.load();
 
+// Try to play and catch errors
+mainVideo.play().catch(err => {
+    console.warn("Autoplay blocked, user needs to interact first", err);
+    // Optionally: show overlay button "Click to play"
+});
       goTo("moveDetail");
     });
 
@@ -98,3 +103,5 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+
