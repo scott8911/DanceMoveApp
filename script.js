@@ -78,42 +78,59 @@ moves.forEach((moveObj) => {
 });
 
 
+/* ===== DYNAMIC MOVE LIST WITH RELIABLE PREVIEW ===== */
 const moveList = document.getElementById("moveList");
 const moveTitle = document.getElementById("moveTitle");
 const moveTag = document.getElementById("moveTag");
 const moveDescription = document.getElementById("moveDescription");
 const moveKeyFocus = document.getElementById("moveKeyFocus");
-const video = document.getElementById("cloudinaryPlayer");
+const mainVideo = document.getElementById("cloudinaryPlayer");
 
-moves.forEach((moveObj) => {
+moves.forEach((moveObj, index) => {
+
   const item = document.createElement("div");
   item.className = "move-item";
 
-  // layout: name + small video preview
   item.innerHTML = `
     <div class="move-name">${moveObj.name}</div>
     <div class="move-preview">
-        <video src="${moveObj.video}" muted loop playsinline></video>
+      <video 
+        muted 
+        loop 
+        playsinline 
+        preload="metadata"
+      >
+        <source src="${moveObj.video}?v=${index}" type="video/mp4">
+      </video>
     </div>
   `;
 
-  // hover to autoplay preview
   const previewVideo = item.querySelector("video");
-  item.addEventListener("mouseenter", () => previewVideo.play());
-  item.addEventListener("mouseleave", () => previewVideo.pause());
 
-  // click to open detail screen
+  // Force correct preview behavior
+  previewVideo.addEventListener("loadeddata", () => {
+    previewVideo.currentTime = 0;
+  });
+
+  // Autoplay (required for consistent preview)
+  previewVideo.play().catch(() => {
+    // if autoplay blocked, allow hover fallback
+    item.addEventListener("mouseenter", () => previewVideo.play());
+    item.addEventListener("mouseleave", () => previewVideo.pause());
+  });
+
+  // Click to open detail
   item.addEventListener("click", () => {
     moveTitle.textContent = moveObj.name;
     moveTag.innerHTML = moveObj.tag;
     moveDescription.innerHTML = moveObj.description;
     moveKeyFocus.innerHTML = moveObj.keyFocus;
 
-    video.querySelector('source').src = moveObj.video;
-    video.load();
-    video.play();
+    mainVideo.querySelector("source").src = moveObj.video;
+    mainVideo.load();
+    mainVideo.play();
 
-    goTo('moveDetail');
+    goTo("moveDetail");
   });
 
   moveList.appendChild(item);
