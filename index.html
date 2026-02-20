@@ -83,8 +83,9 @@
     <div class="nav-item" onclick="goTo('browse')">Moves</div>
 </div>
 
- <script>
-/* ===== MOVES ARRAY ===== */
+<script>
+
+/* ===== MOVES DATA ===== */
 const moves = [
   {
     name: "Down Bounce",
@@ -102,6 +103,7 @@ const moves = [
   }
 ];
 
+
 /* ===== NAVIGATION ===== */
 function goTo(screenId) {
   document.querySelectorAll('.screen').forEach(screen => {
@@ -110,10 +112,10 @@ function goTo(screenId) {
   document.getElementById(screenId).classList.add('active');
 }
 
+
 /* ===== VIDEO CONTROLS ===== */
 function setSpeed(rate) {
-  const video = document.getElementById('cloudinaryPlayer');
-  video.playbackRate = rate;
+  document.getElementById('cloudinaryPlayer').playbackRate = rate;
 }
 
 function toggleLoop() {
@@ -121,7 +123,8 @@ function toggleLoop() {
   video.loop = !video.loop;
 }
 
-/* ===== DYNAMIC MOVE LIST WITH PREVIEW ===== */
+
+/* ===== BUILD MOVE LIST ===== */
 const moveList = document.getElementById("moveList");
 const moveTitle = document.getElementById("moveTitle");
 const moveTag = document.getElementById("moveTag");
@@ -129,7 +132,7 @@ const moveDescription = document.getElementById("moveDescription");
 const moveKeyFocus = document.getElementById("moveKeyFocus");
 const mainVideo = document.getElementById("cloudinaryPlayer");
 
-moves.forEach((moveObj) => {
+moves.forEach((moveObj, index) => {
 
   const item = document.createElement("div");
   item.className = "move-item";
@@ -137,17 +140,29 @@ moves.forEach((moveObj) => {
   item.innerHTML = `
     <div class="move-name">${moveObj.name}</div>
     <div class="move-preview">
-      <video src="${moveObj.video}" muted loop playsinline></video>
+      <video 
+        muted 
+        loop 
+        playsinline 
+        preload="metadata"
+        width="120"
+        height="80"
+      >
+        <source src="${moveObj.video}?v=${index}" type="video/mp4">
+      </video>
     </div>
   `;
 
   const previewVideo = item.querySelector("video");
 
-  // Hover preview (desktop)
-  item.addEventListener("mouseenter", () => previewVideo.play());
-  item.addEventListener("mouseleave", () => previewVideo.pause());
+  // Autoplay preview safely
+  previewVideo.play().catch(() => {
+    // fallback for browsers blocking autoplay
+    item.addEventListener("mouseenter", () => previewVideo.play());
+    item.addEventListener("mouseleave", () => previewVideo.pause());
+  });
 
-  // Click to open detail
+  // Click to open detail screen
   item.addEventListener("click", () => {
     moveTitle.textContent = moveObj.name;
     moveTag.innerHTML = moveObj.tag;
@@ -163,8 +178,10 @@ moves.forEach((moveObj) => {
 
   moveList.appendChild(item);
 });
+
 </script>
 
 </body>
 </html>
+
 
