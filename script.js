@@ -11,10 +11,13 @@ function openMove(moveName) {
 
     moveTitle.innerText = moveName.toUpperCase();
 
-    if (moveName === 'Down Bounce') {
-        video.querySelector('source').src =
-            "https://res.cloudinary.com/dpde5dep1/video/upload/v1771568605/move1_nxbkhw.mp4";
-    }
+if (moveName === 'Down Bounce') {
+    video.querySelector('source').src =
+        "https://res.cloudinary.com/dpde5dep1/video/upload/v1771568605/move1_nxbkhw.mp4";
+} else if (moveName === '2 Steps') {
+    video.querySelector('source').src =
+        "https://res.cloudinary.com/dpde5dep1/video/upload/v1771570948/dance_move_2_-_2_steps_auvbzj.mp4";
+}
 
     video.load();              // reload with new source
     video.playbackRate = 1;
