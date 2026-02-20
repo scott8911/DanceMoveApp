@@ -35,8 +35,36 @@ const video = document.getElementById("cloudinaryPlayer");
 
 moves.forEach((moveObj) => {
   const item = document.createElement("div");
-  item.className = "move-item";
-  item.textContent = moveObj.name;
+  item.className = "card move-item";
+
+  // layout: name + small video preview
+  item.innerHTML = `
+    <div class="move-name">${moveObj.name}</div>
+    <div class="move-preview">
+        <video src="${moveObj.video}" muted loop playsinline></video>
+    </div>
+  `;
+
+  // autoplay preview on hover
+  const previewVideo = item.querySelector("video");
+  item.addEventListener("mouseenter", () => previewVideo.play());
+  item.addEventListener("mouseleave", () => previewVideo.pause());
+
+  // click to open move detail
+  item.onclick = () => {
+    moveTitle.textContent = moveObj.name;
+    moveTag.innerHTML = moveObj.tag;
+    moveDescription.innerHTML = moveObj.description;
+    moveKeyFocus.innerHTML = moveObj.keyFocus;
+
+    video.querySelector('source').src = moveObj.video;
+    video.load();
+    video.play();
+    goTo('moveDetail');
+  };
+
+  moveList.appendChild(item);
+}); 
 
   item.onclick = () => {
     moveTitle.textContent = moveObj.name;
@@ -48,5 +76,6 @@ moves.forEach((moveObj) => {
 
   moveList.appendChild(item);
 });
+
 
 
