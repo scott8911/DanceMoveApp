@@ -16,7 +16,7 @@ if (moveName === 'Down Bounce') {
         "https://res.cloudinary.com/dpde5dep1/video/upload/v1771568605/move1_nxbkhw.mp4";
 } else if (moveName === '2 Steps') {
     video.querySelector('source').src =
-        "https://res.cloudinary.com/dpde5dep1/video/upload/v1771570948/dance_move_2_-_2_steps_auvbzj.mp4";
+        "https://res.cloudinary.com/dpde5dep1/video/upload/v1771593052/dance_move2_2steps_ql3w7g.mp4";
 }
 
     video.load();              // reload with new source
@@ -39,3 +39,4 @@ function toggleLoop() {
 document.querySelectorAll('.preview-card video').forEach(video => {
     video.play();
 });
+
