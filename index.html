@@ -83,7 +83,7 @@
     <div class="nav-item" onclick="goTo('browse')">Moves</div>
 </div>
 
-<script>
+ <script>
 /* ===== MOVES ARRAY ===== */
 const moves = [
   {
@@ -104,47 +104,62 @@ const moves = [
 
 /* ===== NAVIGATION ===== */
 function goTo(screenId) {
-    document.querySelectorAll('.screen').forEach(screen => {
-        screen.classList.remove('active');
-    });
-    document.getElementById(screenId).classList.add('active');
+  document.querySelectorAll('.screen').forEach(screen => {
+    screen.classList.remove('active');
+  });
+  document.getElementById(screenId).classList.add('active');
 }
 
 /* ===== VIDEO CONTROLS ===== */
 function setSpeed(rate) {
-    const video = document.getElementById('cloudinaryPlayer');
-    video.playbackRate = rate;
+  const video = document.getElementById('cloudinaryPlayer');
+  video.playbackRate = rate;
 }
 
 function toggleLoop() {
-    const video = document.getElementById('cloudinaryPlayer');
-    video.loop = !video.loop;
+  const video = document.getElementById('cloudinaryPlayer');
+  video.loop = !video.loop;
 }
 
-/* ===== DYNAMIC MOVE LIST ===== */
+/* ===== DYNAMIC MOVE LIST WITH PREVIEW ===== */
 const moveList = document.getElementById("moveList");
 const moveTitle = document.getElementById("moveTitle");
 const moveTag = document.getElementById("moveTag");
 const moveDescription = document.getElementById("moveDescription");
 const moveKeyFocus = document.getElementById("moveKeyFocus");
-const video = document.getElementById("cloudinaryPlayer");
+const mainVideo = document.getElementById("cloudinaryPlayer");
 
 moves.forEach((moveObj) => {
-  const item = document.createElement("div");
-  item.className = "card move-item"; // use card styling
-  item.innerHTML = `<strong>${moveObj.name}</strong><div class="tag">${moveObj.tag}</div>`;
 
-  item.onclick = () => {
+  const item = document.createElement("div");
+  item.className = "move-item";
+
+  item.innerHTML = `
+    <div class="move-name">${moveObj.name}</div>
+    <div class="move-preview">
+      <video src="${moveObj.video}" muted loop playsinline></video>
+    </div>
+  `;
+
+  const previewVideo = item.querySelector("video");
+
+  // Hover preview (desktop)
+  item.addEventListener("mouseenter", () => previewVideo.play());
+  item.addEventListener("mouseleave", () => previewVideo.pause());
+
+  // Click to open detail
+  item.addEventListener("click", () => {
     moveTitle.textContent = moveObj.name;
     moveTag.innerHTML = moveObj.tag;
     moveDescription.innerHTML = moveObj.description;
     moveKeyFocus.innerHTML = moveObj.keyFocus;
 
-    video.querySelector('source').src = moveObj.video;
-    video.load();
-    video.play();
-    goTo('moveDetail');
-  };
+    mainVideo.querySelector("source").src = moveObj.video;
+    mainVideo.load();
+    mainVideo.play();
+
+    goTo("moveDetail");
+  });
 
   moveList.appendChild(item);
 });
@@ -152,3 +167,4 @@ moves.forEach((moveObj) => {
 
 </body>
 </html>
+
