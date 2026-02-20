@@ -23,57 +23,56 @@
 <!-- BROWSE SCREEN -->
 <div id="browse" class="screen browse-screen">
     <input type="text" placeholder="🔍 Search Moves...">
-    
+
     <div class="filters">
         <button>Style ▼</button>
         <button>Difficulty ▼</button>
         <button>Era ▼</button>
     </div>
 
-    <div class="card" onclick="openMove('Down Bounce')">
-        <strong>Down Bounce</strong>
-        <div class="tag">Bounce • Beginner • Groove</div>
-    </div>
+    <!-- Dynamic move list container -->
+    <div id="moveList"></div>
 </div>
 
 <!-- MOVE DETAIL SCREEN -->
 <div id="moveDetail" class="screen move-detail-screen">
     <div class="back" onclick="goTo('browse')">← Back</div>
     <h1 id="moveTitle"></h1>
-    <p class="tag">Bounce • Beginner • Groove</p>
+    <p class="tag" id="moveTag">Bounce • Beginner • Groove</p>
 
     <!-- Cloudinary Video -->
     <div id="videoContainer" class="video-container">
-    <div class="speed-controls">
-    <div class="secondary-button" onclick="setSpeed(0.5)">0.5x</div>
-    <div class="secondary-button" onclick="setSpeed(0.75)">0.75x</div>
-    <div class="secondary-button" onclick="setSpeed(1)">1x</div>
-    <div class="secondary-button" onclick="setSpeed(1.25)">1.25x</div>
-    <div class="secondary-button" onclick="setSpeed(1.5)">1.5x</div>
-</div>
-<div class="secondary-button" onclick="toggleLoop()">
-    Toggle Loop
-</div>
-        <div class="video-wrapper"> 
-<video 
-    id="cloudinaryPlayer"
-    controls 
-    playsinline
-    style="width:100%; height:100%; object-fit:contain;">
-    <source 
-        src="https://res.cloudinary.com/dpde5dep1/video/upload/v1771568605/move1_nxbkhw.mp4"  
-        type="video/mp4">
-</video>
+        <div class="speed-controls">
+            <div class="secondary-button" onclick="setSpeed(0.5)">0.5x</div>
+            <div class="secondary-button" onclick="setSpeed(0.75)">0.75x</div>
+            <div class="secondary-button" onclick="setSpeed(1)">1x</div>
+            <div class="secondary-button" onclick="setSpeed(1.25)">1.25x</div>
+            <div class="secondary-button" onclick="setSpeed(1.5)">1.5x</div>
+        </div>
+        <div class="secondary-button" onclick="toggleLoop()">Toggle Loop</div>
+
+        <div class="video-wrapper">
+            <video 
+                id="cloudinaryPlayer"
+                controls 
+                playsinline
+                style="width:100%; height:100%; object-fit:contain;">
+                <source 
+                    src="https://res.cloudinary.com/dpde5dep1/video/upload/v1771568605/move1_nxbkhw.mp4"  
+                    type="video/mp4">
+            </video>
         </div>
     </div>
 
     <p><strong>Description:</strong><br>
-    Classic bounce groove focusing on grounded rhythm and body control.</p>
+    <span id="moveDescription">Classic bounce groove focusing on grounded rhythm and body control.</span></p>
 
     <p><strong>Key Focus:</strong><br>
+    <span id="moveKeyFocus">
     - Downward energy<br>
     - Core control<br>
-    - Timing on 1 & 2</p>
+    - Timing on 1 & 2
+    </span></p>
 
     <div class="button">Save Move ♥</div>
 </div>
@@ -84,8 +83,72 @@
     <div class="nav-item" onclick="goTo('browse')">Moves</div>
 </div>
 
-<script src="script.js"></script>
+<script>
+/* ===== MOVES ARRAY ===== */
+const moves = [
+  {
+    name: "Down Bounce",
+    video: "https://res.cloudinary.com/dpde5dep1/video/upload/v1771568605/move1_nxbkhw.mp4",
+    tag: "Bounce • Beginner • Groove",
+    description: "Classic bounce groove focusing on grounded rhythm and body control.",
+    keyFocus: "- Downward energy<br>- Core control<br>- Timing on 1 & 2"
+  },
+  {
+    name: "2 Steps",
+    video: "https://res.cloudinary.com/dpde5dep1/video/upload/v1771570948/dance_move_2_-_2_steps_auvbzj.mp4",
+    tag: "Step • Beginner • Groove",
+    description: "Basic 2-step move with emphasis on timing and footwork.",
+    keyFocus: "- Foot coordination<br>- Timing<br>- Smooth transitions"
+  }
+];
+
+/* ===== NAVIGATION ===== */
+function goTo(screenId) {
+    document.querySelectorAll('.screen').forEach(screen => {
+        screen.classList.remove('active');
+    });
+    document.getElementById(screenId).classList.add('active');
+}
+
+/* ===== VIDEO CONTROLS ===== */
+function setSpeed(rate) {
+    const video = document.getElementById('cloudinaryPlayer');
+    video.playbackRate = rate;
+}
+
+function toggleLoop() {
+    const video = document.getElementById('cloudinaryPlayer');
+    video.loop = !video.loop;
+}
+
+/* ===== DYNAMIC MOVE LIST ===== */
+const moveList = document.getElementById("moveList");
+const moveTitle = document.getElementById("moveTitle");
+const moveTag = document.getElementById("moveTag");
+const moveDescription = document.getElementById("moveDescription");
+const moveKeyFocus = document.getElementById("moveKeyFocus");
+const video = document.getElementById("cloudinaryPlayer");
+
+moves.forEach((moveObj) => {
+  const item = document.createElement("div");
+  item.className = "card move-item"; // use card styling
+  item.innerHTML = `<strong>${moveObj.name}</strong><div class="tag">${moveObj.tag}</div>`;
+
+  item.onclick = () => {
+    moveTitle.textContent = moveObj.name;
+    moveTag.innerHTML = moveObj.tag;
+    moveDescription.innerHTML = moveObj.description;
+    moveKeyFocus.innerHTML = moveObj.keyFocus;
+
+    video.querySelector('source').src = moveObj.video;
+    video.load();
+    video.play();
+    goTo('moveDetail');
+  };
+
+  moveList.appendChild(item);
+});
+</script>
+
 </body>
 </html>
-
-
