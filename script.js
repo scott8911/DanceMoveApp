@@ -36,7 +36,12 @@ function toggleLoop() {
     video.loop = !video.loop;
 }
 //play preview video
-document.querySelectorAll('.preview-card video').forEach(video => {
-    video.play();
-});
+// Play preview videos AFTER page loads
+window.addEventListener('DOMContentLoaded', () => {
+    const previews = document.querySelectorAll('.preview-card video');
 
+    previews.forEach(video => {
+        video.muted = true;
+        video.play().catch(() => {});
+    });
+});
