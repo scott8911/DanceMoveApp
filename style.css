@@ -97,3 +97,9 @@ input {
     height: 100%;
     object-fit: contain;
 }
+.speed-controls {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
