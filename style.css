@@ -126,4 +126,34 @@ input {
 }
 
 
+/* Move list preview layout */
+.card.move-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #333;
+    cursor: pointer;
+}
+
+.card.move-item .move-name {
+    flex: 1;
+    font-weight: bold;
+    color: #fff;
+}
+
+.card.move-item .move-preview {
+    width: 120px;
+    height: 70px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-left: 10px;
+}
+
+.card.move-item .move-preview video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none; /* prevent clicking on video instead of card */
+}
 
