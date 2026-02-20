@@ -44,6 +44,16 @@
 
     <!-- Cloudinary Video -->
     <div id="videoContainer" class="video-container">
+    <div class="speed-controls">
+    <div class="secondary-button" onclick="setSpeed(0.5)">0.5x</div>
+    <div class="secondary-button" onclick="setSpeed(0.75)">0.75x</div>
+    <div class="secondary-button" onclick="setSpeed(1)">1x</div>
+    <div class="secondary-button" onclick="setSpeed(1.25)">1.25x</div>
+    <div class="secondary-button" onclick="setSpeed(1.5)">1.5x</div>
+</div>
+<div class="secondary-button" onclick="toggleLoop()">
+    Toggle Loop
+</div>
         <div class="video-wrapper"> 
 <video 
     id="cloudinaryPlayer"
@@ -77,3 +87,4 @@
 <script src="script.js"></script>
 </body>
 </html>
+
