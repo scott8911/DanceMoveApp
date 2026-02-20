@@ -4,41 +4,18 @@ function goTo(screenId) {
     });
     document.getElementById(screenId).classList.add('active');
 }
+
 function openMove(moveName) {
     const moveTitle = document.getElementById('moveTitle');
-    const videoContainer = document.getElementById('videoContainer');
-    const biliPlayer = document.getElementById('biliPlayer');
+    const player = document.getElementById('cloudinaryPlayer');
 
     moveTitle.innerText = moveName.toUpperCase();
 
-    let videoUrl = '';
-
     if (moveName === 'Down Bounce') {
-        videoUrl = 'https://player.bilibili.com/player.html?bvid=BV1K4ZiB9EAc&page=1';
-    }
-
-    if (videoUrl) {
-        biliPlayer.src = videoUrl;
-        videoContainer.style.display = 'block';
+        player.src = "https://player.cloudinary.com/embed/?cloud_name=dpde5dep1&public_id=move1_gethq6";
     } else {
-        videoContainer.style.display = 'none';
+        player.src = "";
     }
 
     goTo('moveDetail');
-}
-
-
-function playVideo(btn) {
-    const video = document.getElementById('demoVideo');
-    const src = btn.getAttribute('data-src');
-
-    if (!src) {
-        alert('No video available for this move.');
-        return;
-    }
-
-    video.querySelector('source').src = src;
-    video.load();
-    video.style.display = 'block';
-    video.play();
 }
