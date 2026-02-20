@@ -1,128 +1,119 @@
-body {
+/* BASIC RESET */
+body, html {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0f0f0f;
-    color: white;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: #111;
+    color: #fff;
 }
 
 .screen {
     display: none;
     padding: 20px;
-    padding-bottom: 80px;
 }
 
-.active {
+.screen.active {
     display: block;
 }
 
-h1 {
+/* WELCOME SCREEN */
+.welcome-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     text-align: center;
 }
 
-.button {
-    background: #00bfff;
-    padding: 12px;
-    text-align: center;
-    margin: 15px 0;
+.welcome-screen h1 {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+}
+
+.button, .secondary-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 8px;
+    background: #ff4081;
+    border: none;
     border-radius: 8px;
     cursor: pointer;
+    color: #fff;
+    font-weight: bold;
 }
 
 .secondary-button {
-    border: 1px solid #555;
+    background: #555;
+}
+
+/* MOVE LIST */
+.move-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.card.move-item {
+    background: #222;
     padding: 10px;
-    margin: 10px 0;
     border-radius: 8px;
-    text-align: center;
+    width: 140px;
     cursor: pointer;
+    transition: transform 0.2s;
 }
 
-.card {
-    border-bottom: 1px solid #333;
-    padding: 15px 0;
-    cursor: pointer;
+.card.move-item:hover {
+    transform: scale(1.05);
 }
 
-.tag {
-    font-size: 12px;
-    color: #aaa;
-}
-
-input {
+.move-preview video {
     width: 100%;
-    padding: 10px;
-    border-radius: 6px;
-    border: none;
-    margin-bottom: 10px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
 }
 
+/* VIDEO SCREEN */
+.video-container {
+    margin-top: 15px;
+}
+
+.video-wrapper {
+    width: 100%;
+    max-height: 300px;
+    background: #000;
+}
+
+.speed-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+/* BOTTOM NAV */
 .bottom-nav {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background: #111;
     display: flex;
-    justify-content: space-around;
-    padding: 12px 0;
-    border-top: 1px solid #333;
+    background: #222;
 }
 
 .nav-item {
+    flex: 1;
+    padding: 12px 0;
+    text-align: center;
     cursor: pointer;
-    font-size: 14px;
+    border-top: 1px solid #444;
 }
 
-.back {
-    cursor: pointer;
-    margin-bottom: 10px;
-    color: #00bfff;
+/* TEXT */
+h1, p {
+    margin: 5px 0;
 }
 
-/* Vertical video layout */
-.video-container {
-    margin-top: 0;         /* smaller top space */
-    padding: 0;
-    max-width: 800px;        /* optional */
-    text-align: center;      /* center buttons */
+.tag {
+    color: #ff4081;
 }
-
-.video-wrapper {
-    display: inline-block; /* shrink-wrap the video */
-    width: 100%;
-    border-radius: 16px;
-    overflow: hidden;
-    background: black; 
-}
-
-.video-wrapper video {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-}
-/* Make speed/loop buttons smaller and below the video */
-.video-container .speed-controls {
-    display: flex;
-    gap: 5px 0;
-    flex-wrap: wrap;
-    margin: 2px 0; /* spacing under video */
-    justify-content: center;
-}
-
-.video-container .speed-controls .secondary-button,
-.video-container .video-container .secondary-button {
-    padding: 6px 10px;       /* smaller size */
-    font-size: 12px;         /* smaller text */
-    border-radius: 6px;
-    border: 1px solid #555;
-    background: #222;
-    color: #00bfff;
-    cursor: pointer;
-    flex: unset;             /* remove flex stretch */
-}
-
-.video-container .secondary-button.toggle-loop {
-    margin-top: 2px;         /* separate from speed buttons */
-}
-
-
