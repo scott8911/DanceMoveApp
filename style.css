@@ -80,7 +80,10 @@ input {
 
 /* Vertical video layout */
 .video-container {
-    margin-top: 15px;
+    margin-top: 5px;         /* smaller top space */
+    margin-bottom: 5px;      /* smaller bottom space */
+    max-width: 800px;        /* optional */
+    text-align: center;      /* center buttons */
 }
 
 .video-wrapper {
@@ -89,13 +92,15 @@ input {
     border-radius: 16px;
     overflow: hidden;
     background: black;
+    margin: 0 auto;          /* center horizontally */
+
 }
 
 .video-wrapper video {
     width: 100%;
     height: auto;
     display: block;
-    object-fit: contain;
+    object-fit: cover;
 }
 /* Make speed/loop buttons smaller and below the video */
 .video-container .speed-controls {
@@ -121,4 +126,5 @@ input {
 .video-container .secondary-button.toggle-loop {
     margin-top: 3px;         /* separate from speed buttons */
 }
+
 
