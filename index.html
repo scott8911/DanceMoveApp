@@ -9,67 +9,34 @@
 
 <body>
 
-<!-- WELCOME SCREEN -->
-<div id="welcome" class="screen active welcome-screen">
-    <div class="overlay">
-        <h1>⚡ HIPHOP MOVE LAB</h1>
-        <p>Learn • Drill • Master Your Groove</p>
-        <div class="button" onclick="goTo('browse')">START TRAINING</div>
-        <div class="secondary-button" onclick="goTo('browse')">Browse Moves</div>
-        <div class="secondary-button" onclick="goTo('saved')">Saved Moves</div>
-    </div>
+<div id="welcome" class="screen active">
+    <h1>⚡ HIPHOP MOVE LAB</h1>
+    <div class="button" onclick="goTo('browse')">START TRAINING</div>
 </div>
 
-<!-- BROWSE SCREEN -->
-<div id="browse" class="screen browse-screen">
-    <input type="text" placeholder="🔍 Search Moves...">
-    
-    <div class="filters">
-        <button>Style ▼</button>
-        <button>Difficulty ▼</button>
-        <button>Era ▼</button>
-    </div>
-
+<div id="browse" class="screen">
     <div class="card" onclick="openMove('Down Bounce')">
         <strong>Down Bounce</strong>
         <div class="tag">Bounce • Beginner • Groove</div>
     </div>
 </div>
 
-<!-- MOVE DETAIL SCREEN -->
-<div id="moveDetail" class="screen move-detail-screen">
+<div id="moveDetail" class="screen">
     <div class="back" onclick="goTo('browse')">← Back</div>
     <h1 id="moveTitle"></h1>
-    <p class="tag">Bounce • Beginner • Groove</p>
 
-    <!-- Cloudinary Video -->
-    <div id="videoContainer" class="video-container">
-        <div class="video-wrapper">
-            <iframe 
-                id="cloudinaryPlayer"
-                src=""
-                frameborder="0"
-                allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                allowfullscreen>
-            </iframe>
-        </div>
-    </div>
+    <video id="demoVideo" controls playsinline>
+        <source id="videoSource" src="" type="video/mp4">
+    </video>
 
-    <p><strong>Description:</strong><br>
-    Classic bounce groove focusing on grounded rhythm and body control.</p>
+    <h3>Speed Control</h3>
+    <div class="secondary-button" onclick="setSpeed(0.5)">0.5x</div>
+    <div class="secondary-button" onclick="setSpeed(0.75)">0.75x</div>
+    <div class="secondary-button" onclick="setSpeed(1)">1x</div>
+    <div class="secondary-button" onclick="setSpeed(1.25)">1.25x</div>
+    <div class="secondary-button" onclick="setSpeed(1.5)">1.5x</div>
 
-    <p><strong>Key Focus:</strong><br>
-    - Downward energy<br>
-    - Core control<br>
-    - Timing on 1 & 2</p>
-
-    <div class="button">Save Move ♥</div>
-</div>
-
-<!-- BOTTOM NAV -->
-<div class="bottom-nav">
-    <div class="nav-item" onclick="goTo('welcome')">Home</div>
-    <div class="nav-item" onclick="goTo('browse')">Moves</div>
+    <div class="secondary-button" onclick="toggleLoop()">Toggle Loop</div>
 </div>
 
 <script src="script.js"></script>
