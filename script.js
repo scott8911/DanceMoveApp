@@ -35,4 +35,7 @@ function toggleLoop() {
     const video = document.getElementById('cloudinaryPlayer');
     video.loop = !video.loop;
 }
-
+//play preview video
+document.querySelectorAll('.preview-card video').forEach(video => {
+    video.play();
+});
