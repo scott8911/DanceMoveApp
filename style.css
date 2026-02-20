@@ -197,3 +197,26 @@ input {
     padding: 10px;
 }
 
+.move-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #111;
+}
+
+.move-name {
+    font-weight: bold;
+    color: #00bfff;
+}
+
+.move-preview video {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+}
