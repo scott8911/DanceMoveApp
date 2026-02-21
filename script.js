@@ -26,32 +26,10 @@ video.load();
 video.playbackRate = 1;
 video.loop = false;
 
-goTo('moveDetail');
+    goTo('moveDetail');
 
-// Force re-activation after screen switch
-setTimeout(() => {
-    video.controls = true;
-}, 50);
-}
-
-function setSpeed(rate) {
-    const video = document.getElementById('cloudinaryPlayer');
-    video.playbackRate = rate;
-}
-
-function toggleLoop() {
-    const video = document.getElementById('cloudinaryPlayer');
-    video.loop = !video.loop;
-}
-//play preview video
-// Play preview videos AFTER page loads
-window.addEventListener('DOMContentLoaded', () => {
-    const previews = document.querySelectorAll('.preview-card video');
-
-    previews.forEach(video => {
-        video.muted = true;
+    // force mobile chrome activation
+    setTimeout(() => {
         video.play().catch(() => {});
-    });
-});
-
-
+    }, 100);
+}
