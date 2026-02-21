@@ -12,10 +12,10 @@ function openMove(moveName) {
     moveTitle.innerText = moveName.toUpperCase();
 
 if (moveName === 'Down Bounce') {
-    video.querySelector('source').src =
+        video.src =
         "https://res.cloudinary.com/dpde5dep1/video/upload/v1771568605/move1_nxbkhw.mp4";
 } else if (moveName === '2 Steps') {
-    video.querySelector('source').src =
+        video.src =
         "https://res.cloudinary.com/dpde5dep1/video/upload/v1771593052/dance_move2_2steps_ql3w7g.mp4";
 }
 
@@ -45,3 +45,4 @@ window.addEventListener('DOMContentLoaded', () => {
         video.play().catch(() => {});
     });
 });
+
