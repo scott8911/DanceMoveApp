@@ -19,11 +19,19 @@ if (moveName === 'Down Bounce') {
         "https://res.cloudinary.com/dpde5dep1/video/upload/v1771593052/dance_move2_2steps_ql3w7g.mp4";
 }
 
-    video.load();              // reload with new source
-    video.playbackRate = 1;
-    video.loop = false;
+video.pause();
+video.currentTime = 0;
 
-    goTo('moveDetail');
+video.load();
+video.playbackRate = 1;
+video.loop = false;
+
+goTo('moveDetail');
+
+// Force re-activation after screen switch
+setTimeout(() => {
+    video.controls = true;
+}, 50);
 }
 
 function setSpeed(rate) {
@@ -45,4 +53,5 @@ window.addEventListener('DOMContentLoaded', () => {
         video.play().catch(() => {});
     });
 });
+
 
